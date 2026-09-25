@@ -13,6 +13,13 @@ class Favourites {
     private let key =  "Favourites"
     
     init() {
+        if let data = UserDefaults.standard.data(forKey: key) {
+            if let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+                resorts = decoded
+                return
+            }
+        }
+        
         resorts = []
     }
     
@@ -31,6 +38,8 @@ class Favourites {
     }
     
     func save() {
-        
+        if let data = try? JSONEncoder().encode(resorts) {
+            UserDefaults.standard.set(data, forKey: key)
+        }
     }
 }
