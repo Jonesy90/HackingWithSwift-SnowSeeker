@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+enum SortType {
+    case `default`, alphabetical, county
+}
+
 struct ContentView: View {
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
     @State private var searchResort = String()
     @State private var favourites = Favourites()
+    
+    @State private var sortType = SortType.default
+    @State private var isShowingSort = false
     
     var filteredResorts: [Resort] {
         if searchResort.isEmpty {
@@ -21,9 +28,20 @@ struct ContentView: View {
         }
     }
     
+    var sortedResults: [Resort] {
+        switch sortType {
+        case .default:
+            filteredResorts
+        case .alphabetical:
+            filteredResorts.sorted { $0.name < $1.name }
+        case .county:
+            filteredResorts.sorted { $0.country < $1.country }
+        }
+    }
+    
     var body: some View {
         NavigationSplitView {
-            List(filteredResorts) { resort in
+            List(sortedResults) { resort in
                 NavigationLink(value: resort) {
                     HStack {
                         Image(resort.country)
@@ -59,10 +77,21 @@ struct ContentView: View {
                 ResortView(resort: resort)
             }
             .searchable(text: $searchResort, prompt: "Search for a resort")
+            .toolbar {
+                Button("Change Sort Order", systemImage: "arrow.up.arrow.down") {
+                    isShowingSort = true
+                }
+            }
+            .confirmationDialog("Sort Order", isPresented: $isShowingSort) {
+                Button("Default") { sortType = .default }
+                Button("Alphabetical") { sortType = .alphabetical }
+                Button("Country") { sortType = .county }
+            }
         } detail: {
             WelcomeView()
         }
         .environment(favourites)
+
     }
 }
 
