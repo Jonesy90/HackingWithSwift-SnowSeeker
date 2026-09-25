@@ -6,13 +6,8 @@
 	objectVersion = 110;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		B2F44E3630666BC9005D58F7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B2F44E3530666BC5005D58F7 /* .gitignore */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		B2F44E0E3064003F005D58F7 /* HackingWithSwift-SnowSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackingWithSwift-SnowSeeker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2F44E3530666BC5005D58F7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -35,7 +30,6 @@
 		B2F44E053064003F005D58F7 = {
 			isa = PBXGroup;
 			children = (
-				B2F44E3530666BC5005D58F7 /* .gitignore */,
 				B2F44E103064003F005D58F7 /* HackingWithSwift-SnowSeeker */,
 				B2F44E0F3064003F005D58F7 /* Products */,
 			);
@@ -108,7 +102,6 @@
 		B2F44E0C3064003F005D58F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				B2F44E3630666BC9005D58F7 /* .gitignore in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
